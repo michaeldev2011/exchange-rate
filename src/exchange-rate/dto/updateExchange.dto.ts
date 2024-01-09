@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, IsPositive, IsNumber, Matches } from 'class-validator';
 
-export class CreateExchangeDto {
+export class UpdateExchangeDto {
   @ApiProperty()
   @IsNotEmpty({ message: 'Field currencyOrigin must be added.' })
   @IsString()
@@ -19,7 +19,8 @@ export class CreateExchangeDto {
       'currencyTarget only accept letters.',
   } )
   currencyTarget: string;
- @ApiProperty()
+
+  @ApiProperty()
   @IsNotEmpty({ message: 'exchangeRate must be added' })
   @IsNumber()
   @IsPositive()

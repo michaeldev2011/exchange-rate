@@ -4,10 +4,7 @@ import { Module } from '@nestjs/common';
 import { ExchangeRateController } from './exchange-rate/exchange-rate.controller';
 import { ExchangeRateService } from './exchange-rate/exchange-rate.service';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Exchange } from './exchange-rate/entity/exchange.entity';
-import { databaseProviders } from '././exchange-rate/provider';
-import { photoProviders } from './exchange-rate/exchange-rate.providers';
+
 
 @Module({
   imports: [
@@ -18,7 +15,7 @@ import { photoProviders } from './exchange-rate/exchange-rate.providers';
     AuthModule,  
   ],
   controllers: [ExchangeRateController],
-  providers: [ExchangeRateService,  ...databaseProviders, ...photoProviders],
-  exports: [...databaseProviders]
+  providers: [ExchangeRateService,  ],
+  exports: []
 })
 export class AppModule {}

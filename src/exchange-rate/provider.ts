@@ -7,7 +7,7 @@ export const databaseProviders = [
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'sqlite',
-        database: ':memory:',
+        database: ':memory:',       
         synchronize: true,
         entities: [Exchange]      
       });

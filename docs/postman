@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "e889e72b-2a31-4e10-bd55-da22b0344b9a",
+		"name": "exchange-rate",
+		"description": "This Documentation is about of use the API .\n\nThe goal of this API is Help to calculate of exchange rate of severals currency's by default is charged with some values but you can populate information of other currency's using the endpoints for this purpose.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8711626"
+	},
+	"item": [
+		{
+			"name": "authorization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var headerValue = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"token\", headerValue.access_token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "mGLZMNNLMWCSDW87ZjLn6Wp6eAc3kajsGHrpyeAd3mOgSv2O",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "iy2S67bNlnx2ZfAGWtLEvuM8XqGf2faM3mTw55358XJ4PSwFskV66Y9YAhvEMuM4",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url-exchange}}exchange/authorization",
+					"host": [
+						"{{url-exchange}}exchange"
+					],
+					"path": [
+						"authorization"
+					]
+				},
+				"description": "This endpoint brings autorization for all API."
+			},
+			"response": []
+		},
+		{
+			"name": "getExchange",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-exchange}}exchange/calculate/?amount=75&currencyOrigin=PEN&currencyTarget=USD",
+					"host": [
+						"{{url-exchange}}exchange"
+					],
+					"path": [
+						"calculate",
+						""
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "75"
+						},
+						{
+							"key": "currencyOrigin",
+							"value": "PEN"
+						},
+						{
+							"key": "currencyTarget",
+							"value": "USD"
+						}
+					]
+				},
+				"description": "This endpoint calculate the exchange rate."
+			},
+			"response": []
+		},
+		{
+			"name": "getAllExchange",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-exchange}}exchange/",
+					"host": [
+						"{{url-exchange}}exchange"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "This endpoint get all exchange rate."
+			},
+			"response": []
+		},
+		{
+			"name": "create exchange-rate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"currencyOrigin\": \"CLP\",\r\n\"currencyTarget\" : \"PEN\",\r\n\"exchangeRate\" : 62.3\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-exchange}}exchange/",
+					"host": [
+						"{{url-exchange}}exchange"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "this endpoint create new exchange rate."
+			},
+			"response": []
+		},
+		{
+			"name": "update exchange-rate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"currencyOrigin\": \"USD\",\r\n\"currencyTarget\" : \"PEN\",\r\n\"exchangeRate\" : 3.71\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-exchange}}exchange/",
+					"host": [
+						"{{url-exchange}}exchange"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "this endpoint update the exchange rate."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
